@@ -1,0 +1,30 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#root{
+    height: 100%;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.card-component {
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 576px) {
+    html,
+    body {
+        background-color: #f5f5f5 !important;
+    }
+    .card-component {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, .2);
+    }
+}

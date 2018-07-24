@@ -1,0 +1,25 @@
+.app-notification {
+    bottom: 0;
+}
+
+.app-notification .notification-tile {
+    min-width: 400px;
+    max-width: 500px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.app-notification .notification-tile .notification-close {
+    font-size: 18px;
+    color: #fff;
+    opacity: .75;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.app-notification .notification-tile .notification-close:hover {
+    opacity: 1;
+}
