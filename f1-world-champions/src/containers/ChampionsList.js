@@ -6,6 +6,7 @@ import ChampionsTable from '../components/ChampionsTable';
 
 import { fetchSeasons, updateSelectedSeason } from '../actions/seasons';
 import { fetchChampions } from '../actions/champions';
+import {showNotification} from '../util';
 
 class ChampionsList extends Component {
 
@@ -14,7 +15,7 @@ class ChampionsList extends Component {
         seasons: PropTypes.object.isRequired,
         fromYear: PropTypes.string.isRequired,
         toYear: PropTypes.string.isRequired,
-        champions :PropTypes.object.isRequired
+        champions: PropTypes.object.isRequired
     }
 
     fetchData() {
@@ -26,17 +27,6 @@ class ChampionsList extends Component {
     componentWillMount() {
         this.fetchData()
     }
-
-    // componentDidUpdate(prevProps){
-    //    const {champions} = this.props;
-    //    if(champions.error && champions.fetched && champions.data.length === 0){
-    //     notify.show({
-    //         heading : "Error",
-    //         message : champions.error,
-    //         type : "error"
-    //     })
-    //    }
-    // }
 
     handleSeasonChange(e, type) {
         const { dispatch } = this.props;
@@ -61,7 +51,11 @@ class ChampionsList extends Component {
         const { champions, fromYear, toYear } = this.props;
         const data = champions.data.filter(item => item.season >= fromYear && item.season <= toYear);
         return (
-            <ChampionsTable data={data} />
+            <div>
+                <ChampionsTable data={data} />
+                {showNotification(champions.error && champions.fetched && champions.data.length === 0)("error", "Error", champions.error)}
+            </div>
+            
         )
     }
 

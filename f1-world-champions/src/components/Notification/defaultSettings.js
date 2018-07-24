@@ -2,7 +2,6 @@ export const defaultSettings = {
     wrapperId: 'notification-wrapper',
     animationDuration: 300,
     timeout: 5000,
-    zIndex: 1000,
     colors: {
         error: {
             color: "#FFFFFF",
