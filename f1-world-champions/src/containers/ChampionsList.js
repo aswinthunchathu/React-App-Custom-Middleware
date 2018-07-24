@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SeasonSelection from '../components/SeasonSelection';
 import ChampionsTable from '../components/ChampionsTable';
-import Notification, { notify } from '../components/Notification';
 
 import { fetchSeasons, updateSelectedSeason } from '../actions/seasons';
 import { fetchChampions } from '../actions/champions';
@@ -28,16 +27,16 @@ class ChampionsList extends Component {
         this.fetchData()
     }
 
-    componentDidUpdate(prevProps){
-       const {champions} = this.props;
-       if(champions.error && champions.fetched && champions.data.length === 0){
-        notify.show({
-            heading : "Error",
-            message : champions.error,
-            type : "error"
-        })
-       }
-    }
+    // componentDidUpdate(prevProps){
+    //    const {champions} = this.props;
+    //    if(champions.error && champions.fetched && champions.data.length === 0){
+    //     notify.show({
+    //         heading : "Error",
+    //         message : champions.error,
+    //         type : "error"
+    //     })
+    //    }
+    // }
 
     handleSeasonChange(e, type) {
         const { dispatch } = this.props;
@@ -69,7 +68,6 @@ class ChampionsList extends Component {
     render() {
         return (
             <div className="container card-component">
-                <Notification />
                 {this.fetchBySeasonRange_UI()}
                 {this.championsList_UI()}
             </div>
