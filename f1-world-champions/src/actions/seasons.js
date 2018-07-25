@@ -49,8 +49,8 @@ const shouldFetchSeasons = (state) => (dispatch) => {
 
 //This function will fetch all the available seasons
 export const fetchSeasons = () => (dispatch, getState) => {
-    dispatch(actionCreator(SEASON_TAG, FETCH, null, null));
     if (dispatch(shouldFetchSeasons(getState()))) {
+        dispatch(actionCreator(SEASON_TAG, FETCH, null, null));
         dispatch(apiRequest("GET", QUERY_SEASONS, null, fetchSeasonsSuccess, fetchSeasonsError, SEASON_TAG));
     }
 }

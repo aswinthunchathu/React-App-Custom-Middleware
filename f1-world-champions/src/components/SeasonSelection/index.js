@@ -13,7 +13,6 @@ class SeasonSelection extends Component {
     seasons: PropTypes.object.isRequired,
     fromYearValue: PropTypes.string.isRequired,
     toYearValue: PropTypes.string.isRequired,
-    onFetchClick: PropTypes.func,
     onSeasonChange: PropTypes.func.isRequired
   }
 
@@ -27,7 +26,7 @@ class SeasonSelection extends Component {
   }
 
   render() {
-    const { seasons, fromYearValue, toYearValue, onFetchClick, onSeasonChange } = this.props;
+    const { seasons, fromYearValue, toYearValue, onSeasonChange } = this.props;
     let fromList = [];
     let toList = [];
     if (seasons.data.length > 0) {
@@ -49,11 +48,6 @@ class SeasonSelection extends Component {
             className="form-group"
             onChange={(event) => onSeasonChange(event, UPDATE_TO_SEASON)}
             options={toList} label="To"/>
-        </div>
-        <div className="col-12 col-sm-6 col-md-2 m-sm-auto m-md-0">
-          <label className="d-none d-md-block">&nbsp;</label>
-          <button className="btn btn-dark btn-block mb-3 mb-md-0"
-            onClick={onFetchClick}>Fetch</button>
         </div>
       </div>
     )

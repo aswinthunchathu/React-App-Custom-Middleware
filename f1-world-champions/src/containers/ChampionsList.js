@@ -33,17 +33,12 @@ class ChampionsList extends Component {
         dispatch(updateSelectedSeason(type, e.target.value));
     }
 
-    handleFetchClick() {
-
-    }
-
     fetchBySeasonRange_UI() {
         const { seasons, fromYear, toYear } = this.props;
         return (
             <SeasonSelection
                 seasons={seasons} fromYearValue={fromYear} toYearValue={toYear}
-                onSeasonChange={this.handleSeasonChange.bind(this)}
-                onFetchClick={this.handleFetchClick} />
+                onSeasonChange={this.handleSeasonChange.bind(this)} />
         )
     }
 
@@ -55,7 +50,6 @@ class ChampionsList extends Component {
                 <ChampionsTable data={data} />
                 {showNotification(champions.error && champions.fetched && champions.data.length === 0)("error", "Error", champions.error)}
             </div>
-            
         )
     }
 

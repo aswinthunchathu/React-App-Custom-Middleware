@@ -39,7 +39,7 @@ class Table extends Component {
             <td key={j} className={columns[j].classNameTD}>
               {
                 columns[j].cell ?
-                columns[j].cell(columns[j].accessor(data[i])) :
+                columns[j].cell(columns[j].accessor(data[i]), data[i]) :
                 columns[j].accessor(data[i])
               }
             </td>

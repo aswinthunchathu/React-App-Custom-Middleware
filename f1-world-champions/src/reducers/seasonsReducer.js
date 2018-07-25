@@ -1,4 +1,4 @@
-import { combineReducers } from 'C:/Users/aswin/AppData/Local/Microsoft/TypeScript/2.9/node_modules/redux';
+import { combineReducers } from 'redux';
 import {
     SEASON_TAG, UPDATE_FROM_SEASON, UPDATE_TO_SEASON
 } from '../constants/actionTypes';

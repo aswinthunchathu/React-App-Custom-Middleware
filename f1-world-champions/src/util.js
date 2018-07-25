@@ -43,7 +43,7 @@ export const reducerCreator = (initaialValue, tag) => {
     return (
         state = {
             fetching: false,
-            fetched: true,
+            fetched: false,
             data: initaialValue,
             error: null
         }, action
@@ -58,7 +58,9 @@ export const reducerCreator = (initaialValue, tag) => {
                 return {
                     ...state,
                     fetched: true,
-                    data: action.payload
+                    fetching: false,
+                    data: action.payload,
+                    error : null
                 }
             case tagCreator(tag, FETCH_ERROR):
                 return {

@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import './index.css';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
 
 import Table from '../Table';
 
-class ChampionsTable extends Component {
+class WinnersTable extends Component {
 
   static propTypes = {
     // Injected by React Redux
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    highlightKey :PropTypes.string
   }
 
   columnSchema() {
     return [
       {
-        header: "Season",
-        accessor: d => d.season,
-        cell: (value, row) => {
-          return <Link to={`/winner/${row.season}/${row.driver.driverId}`} className="text-danger">{value}</Link>
-        }
-      }, {
+        header: "Race",
+        accessor: d => d.raceName
+      },{
         header: "Driver",
         accessor: d => `${d.driver.givenName} ${d.driver.familyName}`
       }, {
@@ -30,17 +27,13 @@ class ChampionsTable extends Component {
         classNameTH : "d-none d-md-table-cell"
       }, {
         header: "Constructor",
-        accessor: d => d.constructor.name
-      }, {
-        header: "Wins",
-        accessor: d => d.wins,
-        classNameTD :"text-right d-none d-lg-table-cell",
-        classNameTH : "d-none d-lg-table-cell"
-      }, {
-        header: "Points",
-        accessor: d => d.points,
-        classNameTD :"text-right d-none d-sm-table-cell",
-        classNameTH : "d-none d-sm-table-cell"
+        accessor: d => d.constructor.name,
+        classNameTD :"d-none d-md-table-cell",
+        classNameTH : "d-none d-md-table-cell"
+      },{
+        header: "Time",
+        accessor: d => d.time,
+        classNameTD :"text-right",
       }
     ]
   }
@@ -58,4 +51,4 @@ class ChampionsTable extends Component {
   }
 }
 
-export default ChampionsTable;
+export default WinnersTable;

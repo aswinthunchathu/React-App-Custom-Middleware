@@ -1,10 +1,12 @@
-import { combineReducers } from 'C:/Users/aswin/AppData/Local/Microsoft/TypeScript/2.9/node_modules/redux';
+import { combineReducers } from 'redux';
 import championsReducer from './championsReducer';
 import seasonsReducer from './seasonsReducer';
+import winnersReducer from './winnersReducer';
 
 const rootReducer = combineReducers({
     champions : championsReducer,
-    seasons : seasonsReducer
+    seasons : seasonsReducer,
+    winners : winnersReducer
 });
 
 export default rootReducer
