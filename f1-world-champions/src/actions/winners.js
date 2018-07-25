@@ -2,9 +2,10 @@ import {
     FETCH_WINNERS, UPDATE_WINNERS
 } from '../constants/actionTypes';
 
-export const fetchWinners = () => (
+export const fetchWinners = (payload) => (
     {
-        type : FETCH_WINNERS
+        type : FETCH_WINNERS,
+        payload
     }
 )
 

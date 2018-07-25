@@ -36,7 +36,7 @@ export const fetchChampionsSuccess = ({ dispatch }) => next => action => {
 export const fetchChampionsFlow = ({ dispatch, getState }) => next => action => {
     next(action);
     if (action.type === FETCH_WINNERS) {
-        dispatch(apiRequest('GET', QUERY_WINNERS, null, FETCH_WINNERS_SUCCESS, FETCH_WINNERS_ERROR));
+        dispatch(apiRequest('GET', `${action.payload}${QUERY_WINNERS}`, null, FETCH_WINNERS_SUCCESS, FETCH_WINNERS_ERROR));
     }
 };
 
