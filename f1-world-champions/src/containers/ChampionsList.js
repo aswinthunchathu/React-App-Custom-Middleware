@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SeasonSelection from '../components/SeasonSelection';
 import ChampionsTable from '../components/ChampionsTable';
 
-import { fetchSeasons, updateSelectedSeason } from '../actions/seasons';
+import { fetchSeasons, updateSeasonRange } from '../actions/seasons';
 import { fetchChampions } from '../actions/champions';
 import { showNotification } from '../util';
 
@@ -19,9 +19,13 @@ class ChampionsList extends Component {
     }
 
     fetchData() {
-        const { dispatch } = this.props;
-        dispatch(fetchSeasons());
-        dispatch(fetchChampions());
+        const {seasons, champions} = this.props;
+        if(!(seasons.fetched && seasons.data.length > 0)){
+            this.props.fetchSeasons();
+        }
+        if(!(champions.fetched && champions.data.length > 0)){
+            this.props.fetchChampions();
+        }
     }
 
     componentWillMount() {
@@ -29,8 +33,7 @@ class ChampionsList extends Component {
     }
 
     handleSeasonChange(e, type) {
-        const { dispatch } = this.props;
-        dispatch(updateSelectedSeason(type, e.target.value));
+       this.props.updateSeasonRange(type, e.target.value);
     }
 
     fetchBySeasonRange_UI() {
@@ -47,7 +50,7 @@ class ChampionsList extends Component {
         const data = champions.data.filter(item => item.season >= fromYear && item.season <= toYear);
         return (
             <div>
-                <ChampionsTable data={data} fetching={champions.fetching}/>
+                <ChampionsTable data={data} fetching={champions.fetching} />
                 {showNotification(champions.error && champions.fetched && champions.data.length === 0)("error", "Error", champions.error)}
             </div>
         )
@@ -70,4 +73,8 @@ const mapStateToProps = (state, ownProps) => ({
     champions: state.champions.list
 });
 
-export default connect(mapStateToProps)(ChampionsList);
+export default connect(mapStateToProps, { 
+        fetchChampions,
+        fetchSeasons,
+        updateSeasonRange 
+    })(ChampionsList);
