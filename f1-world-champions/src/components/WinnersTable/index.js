@@ -9,17 +9,21 @@ class WinnersTable extends Component {
   static propTypes = {
     // Injected by React Redux
     data: PropTypes.array.isRequired,
-    highlightKey :PropTypes.string
+    highlight :PropTypes.object
   }
 
   columnSchema() {
+    const {highlight} = this.props;
     return [
       {
         header: "Race",
         accessor: d => d.raceName
       },{
         header: "Driver",
-        accessor: d => `${d.driver.givenName} ${d.driver.familyName}`
+        accessor: d => `${d.driver.givenName} ${d.driver.familyName}`,
+        cell: (value, row) => {
+          return (<div className={row.driver.driverId === highlight.value ?"highlight-champion" : null}>{value}</div>)
+        }
       }, {
         header: "Nationality",
         accessor: d => d.driver.nationality,

@@ -6,7 +6,7 @@ import ChampionsTable from '../components/ChampionsTable';
 
 import { fetchSeasons, updateSelectedSeason } from '../actions/seasons';
 import { fetchChampions } from '../actions/champions';
-import {showNotification} from '../util';
+import { showNotification } from '../util';
 
 class ChampionsList extends Component {
 

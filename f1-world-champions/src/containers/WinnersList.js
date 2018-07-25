@@ -31,8 +31,8 @@ class WinnersList extends Component {
         const { winners, season, driver } = this.props;
         return (
             <div>
-                <h4 className="text-muted mb-3">{`Showing winner list for the year ${season}`}</h4>
-                <WinnersTable data={winners.data} highlightKey={driver}/>
+                <h4 className="text-muted mb-3 font-weight-light">{`Showing list of winners for the year ${season}`}</h4>
+                <WinnersTable data={winners.data} highlight={{key : "driverId",value : driver}}/>
                 {showNotification(winners.error && winners.fetched && winners.data.length === 0)("error", "Error", winners.error)}
             </div>
         )
