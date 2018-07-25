@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import PropTypes from 'prop-types';
+import Loader from '../Loader';
 
 class Table extends Component {
 
@@ -39,7 +40,7 @@ class Table extends Component {
             <td key={j} className={columns[j].classNameTD}>
               {
                 columns[j].cell ?
-                columns[j].cell(columns[j].accessor(data[i])) :
+                columns[j].cell(columns[j].accessor(data[i]), data[i]) :
                 columns[j].accessor(data[i])
               }
             </td>
@@ -71,4 +72,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default Loader("isLoading")(Table);

@@ -1,5 +1,6 @@
 export const SEASON_TAG = "[seasons]";
 export const CHAMPIONS_TAG = "[champions]";
+export const WINNERS_TAG = "[winners]";
 
 export const FETCH = "Fetch";
 export const FETCH_SUCCESS = "Fetch Success";

@@ -1,3 +1,5 @@
+import React from 'react';
+import Notification from './components/Notification';
 import {
     FETCH, FETCH_SUCCESS, FETCH_ERROR
 } from './constants/actionTypes';
@@ -41,7 +43,7 @@ export const reducerCreator = (initaialValue, tag) => {
     return (
         state = {
             fetching: false,
-            fetched: true,
+            fetched: false,
             data: initaialValue,
             error: null
         }, action
@@ -56,7 +58,9 @@ export const reducerCreator = (initaialValue, tag) => {
                 return {
                     ...state,
                     fetched: true,
-                    data: action.payload
+                    fetching: false,
+                    data: action.payload,
+                    error : null
                 }
             case tagCreator(tag, FETCH_ERROR):
                 return {
@@ -70,4 +74,12 @@ export const reducerCreator = (initaialValue, tag) => {
                 return state;
         }
     }
+}
+
+export const showNotification = (condition) => (type, heading,  message) =>{
+    return (
+        condition ? 
+        <Notification heading={heading} type={type} message={message}/> :
+        null
+    )
 }

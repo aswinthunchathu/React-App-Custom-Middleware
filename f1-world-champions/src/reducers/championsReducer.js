@@ -1,4 +1,4 @@
-import { combineReducers } from 'C:/Users/aswin/AppData/Local/Microsoft/TypeScript/2.9/node_modules/redux';
+import { combineReducers } from 'redux';
 import { CHAMPIONS_TAG } from '../constants/actionTypes';
 import { reducerCreator } from '../util';
 

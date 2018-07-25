@@ -60,8 +60,8 @@ const shouldFetchChampions = (state) => (dispatch) => {
 
 //This function will fetch all the available seasons
 export const fetchChampions = () => (dispatch, getState) => {
-    dispatch(actionCreator(CHAMPIONS_TAG, FETCH, null, null));
     if (dispatch(shouldFetchChampions(getState()))) {
+        dispatch(actionCreator(CHAMPIONS_TAG, FETCH, null, null));
         dispatch(apiRequest("GET", QUERY_CHAMPIONS, null, fetchChampionsSuccess, fetchChampionsError, CHAMPIONS_TAG));
     }
 }

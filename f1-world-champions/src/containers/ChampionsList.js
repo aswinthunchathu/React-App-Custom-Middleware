@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SeasonSelection from '../components/SeasonSelection';
 import ChampionsTable from '../components/ChampionsTable';
-import Notification, { notify } from '../components/Notification';
 
 import { fetchSeasons, updateSelectedSeason } from '../actions/seasons';
 import { fetchChampions } from '../actions/champions';
+import { showNotification } from '../util';
 
 class ChampionsList extends Component {
 
@@ -15,7 +15,7 @@ class ChampionsList extends Component {
         seasons: PropTypes.object.isRequired,
         fromYear: PropTypes.string.isRequired,
         toYear: PropTypes.string.isRequired,
-        champions :PropTypes.object.isRequired
+        champions: PropTypes.object.isRequired
     }
 
     fetchData() {
@@ -28,24 +28,9 @@ class ChampionsList extends Component {
         this.fetchData()
     }
 
-    componentDidUpdate(prevProps){
-       const {champions} = this.props;
-       if(champions.error && champions.fetched && champions.data.length === 0){
-        notify.show({
-            heading : "Error",
-            message : champions.error,
-            type : "error"
-        })
-       }
-    }
-
     handleSeasonChange(e, type) {
         const { dispatch } = this.props;
         dispatch(updateSelectedSeason(type, e.target.value));
-    }
-
-    handleFetchClick() {
-
     }
 
     fetchBySeasonRange_UI() {
@@ -53,8 +38,7 @@ class ChampionsList extends Component {
         return (
             <SeasonSelection
                 seasons={seasons} fromYearValue={fromYear} toYearValue={toYear}
-                onSeasonChange={this.handleSeasonChange.bind(this)}
-                onFetchClick={this.handleFetchClick} />
+                onSeasonChange={this.handleSeasonChange.bind(this)} />
         )
     }
 
@@ -62,14 +46,16 @@ class ChampionsList extends Component {
         const { champions, fromYear, toYear } = this.props;
         const data = champions.data.filter(item => item.season >= fromYear && item.season <= toYear);
         return (
-            <ChampionsTable data={data} />
+            <div>
+                <ChampionsTable data={data} fetching={champions.fetching}/>
+                {showNotification(champions.error && champions.fetched && champions.data.length === 0)("error", "Error", champions.error)}
+            </div>
         )
     }
 
     render() {
         return (
             <div className="container card-component">
-                <Notification />
                 {this.fetchBySeasonRange_UI()}
                 {this.championsList_UI()}
             </div>
