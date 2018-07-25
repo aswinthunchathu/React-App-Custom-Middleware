@@ -20,8 +20,8 @@ class WinnersList extends Component {
 
 
     fetchData() {
-        const { dispatch, season } = this.props;
-        dispatch(fetchWinners(season));
+        const { season } = this.props;
+        this.props.fetchWinners(season)
     }
 
     componentWillMount() {
@@ -64,4 +64,6 @@ const mapStateToProps = (state, ownProps) => ({
     winners: state.winners.list
 });
 
-export default connect(mapStateToProps)(WinnersList);
+export default connect(mapStateToProps,{
+    fetchWinners
+})(WinnersList);

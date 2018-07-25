@@ -1,18 +1,8 @@
-import axios from 'axios';
-import { BASE_URL } from '../constants/api';
+import {API_REQUEST} from '../constants/actionTypes';
 
-const API = axios.create({
-  baseURL: BASE_URL
+export const apiRequest = (method, url, body, onSuccess, onError) => ({
+  type: API_REQUEST,
+  payload: body,
+  meta: { method, url, onSuccess, onError }
 });
 
-export const apiRequest = (method, url, body, onSuccess, onError, tag) => (dispatch) => {
-  const API_REQUEST = `${tag ? `${tag} ` : ""}API Request`;
-  dispatch({ type: API_REQUEST });
-  return API(url, method).then(
-    res => {
-      dispatch(onSuccess(res))
-    },
-    err => {
-      dispatch(onError(err))
-    });
-}

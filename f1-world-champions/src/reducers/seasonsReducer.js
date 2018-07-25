@@ -1,16 +1,56 @@
 import { combineReducers } from 'redux';
 import {
-    SEASON_TAG, UPDATE_FROM_SEASON, UPDATE_TO_SEASON
+    FETCH_SEASONS, FETCH_SEASONS_SUCCESS, UPDATE_SEASONS, FETCH_SEASONS_ERROR,
+    UPDATE_SEASON_RANGE_FROM, UPDATE_SEASON_RANGE_TO
 } from '../constants/actionTypes';
-import {reducerCreator} from '../util';
 
-const list = reducerCreator([], SEASON_TAG);
+const list = (
+    state = {
+        fetching: false,
+        fetched: false,
+        data: [],
+        error: null
+    }, action
+) => {
+    switch (action.type) {
+        case FETCH_SEASONS:
+            return {
+                ...state,
+                fetching: true
+            }
+        case FETCH_SEASONS_SUCCESS:
+            return {
+                ...state,
+                fetched: true,
+                fetching: false,
+                error: null
+            }
+        case UPDATE_SEASONS:
+            return {
+                ...state,
+                fetched: true,
+                fetching: false,
+                data: action.payload,
+                error: null
+            }
+        case FETCH_SEASONS_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                data: [],
+                error: action.payload
+            }
+        default:
+            return state;
+    }
+};
 
 const fromYear = (
     state = "2005", action) => {
     switch (action.type) {
-        case UPDATE_FROM_SEASON:
-            return  action.payload
+        case UPDATE_SEASON_RANGE_FROM:
+            return action.payload
         default:
             return state;
     }
@@ -19,7 +59,7 @@ const fromYear = (
 const toYear = (
     state = "2015", action) => {
     switch (action.type) {
-        case UPDATE_TO_SEASON:
+        case UPDATE_SEASON_RANGE_TO:
             return action.payload
         default:
             return state;

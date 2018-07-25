@@ -3,7 +3,7 @@ import './index.css';
 import PropTypes from 'prop-types';
 import SelectBox from '../SelectBox';
 import {
-  UPDATE_FROM_SEASON, UPDATE_TO_SEASON
+  UPDATE_SEASON_RANGE_FROM, UPDATE_SEASON_RANGE_TO
 } from '../../constants/actionTypes';
 
 class SeasonSelection extends Component {
@@ -40,13 +40,13 @@ class SeasonSelection extends Component {
         <div className="col-12 col-md-4 col-lg-3">
           <SelectBox value={fromYearValue}
             className="form-group"
-            onChange={(event) => onSeasonChange(event, UPDATE_FROM_SEASON)}
+            onChange={(event) => onSeasonChange(event, UPDATE_SEASON_RANGE_FROM)}
             options={fromList} label="From"/>
         </div>
         <div className="col-12 col-md-4 col-lg-3">
           <SelectBox value={toYearValue}
             className="form-group"
-            onChange={(event) => onSeasonChange(event, UPDATE_TO_SEASON)}
+            onChange={(event) => onSeasonChange(event, UPDATE_SEASON_RANGE_TO)}
             options={toList} label="To"/>
         </div>
       </div>
