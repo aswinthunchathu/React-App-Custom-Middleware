@@ -24,10 +24,9 @@ export const fetchSeasonsSuccess = ({ dispatch }) => next => action => {
     }
 };
 
-export const fetchSeasonsFlow = ({ dispatch, getState }) => next => action => {
+export const fetchSeasonsFlow = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_SEASONS) {
-        const seasons = getState().seasons.list;
         const payload = getSessionStorage(KEY_SEASONS_LIST);
         if (payload && payload.length > 0) {
             dispatch({ type: FETCH_SEASONS_FROM_SESSION });
