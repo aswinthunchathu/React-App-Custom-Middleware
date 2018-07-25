@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import PropTypes from 'prop-types';
+import Loader from '../Loader';
 
 class Table extends Component {
 
@@ -71,4 +72,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default Loader("isLoading")(Table);

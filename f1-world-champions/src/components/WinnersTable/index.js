@@ -9,7 +9,8 @@ class WinnersTable extends Component {
   static propTypes = {
     // Injected by React Redux
     data: PropTypes.array.isRequired,
-    highlight :PropTypes.object
+    highlight :PropTypes.object,
+    fetching : PropTypes.bool
   }
 
   columnSchema() {
@@ -43,11 +44,11 @@ class WinnersTable extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, fetching } = this.props;
     return (
       <div className="row">
         <div className="col-12">
-          <Table columns={this.columnSchema()} data={data}
+          <Table columns={this.columnSchema()} data={data} isLoading={fetching}
             className="table table-striped table-hover table-bordered table-sm" />
         </div>
       </div>

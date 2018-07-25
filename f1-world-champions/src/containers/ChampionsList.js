@@ -47,7 +47,7 @@ class ChampionsList extends Component {
         const data = champions.data.filter(item => item.season >= fromYear && item.season <= toYear);
         return (
             <div>
-                <ChampionsTable data={data} />
+                <ChampionsTable data={data} fetching={champions.fetching}/>
                 {showNotification(champions.error && champions.fetched && champions.data.length === 0)("error", "Error", champions.error)}
             </div>
         )
