@@ -3,6 +3,8 @@ import { FETCH_WINNERS, FETCH_WINNERS_SUCCESS,
     UPDATE_WINNERS, FETCH_WINNERS_ERROR 
 } from '../constants/actionTypes';
 
+
+//This reducer updates winners data to redux store
 const list = (
     state = {
         fetching: false,

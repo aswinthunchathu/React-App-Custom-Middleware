@@ -9,6 +9,8 @@ import {
 
 import { updateWinners } from '../actions/winners';
 
+//This private function will flatten the winner object
+//data => winner objet
 const flattenWinnersObject = (data) => {
     return data.map(item => {
         let results = item.Results[0];
@@ -21,6 +23,7 @@ const flattenWinnersObject = (data) => {
     });
 }
 
+//This middleware will proccess the winners's success action triggered from the api
 export const fetchChampionsSuccess = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_WINNERS_SUCCESS) {
@@ -33,6 +36,7 @@ export const fetchChampionsSuccess = ({ dispatch }) => next => action => {
     }
 };
 
+//This middleware will proccess the winners's fetch action triggered on page load
 export const fetchChampionsFlow = ({ dispatch, getState }) => next => action => {
     next(action);
     if (action.type === FETCH_WINNERS) {

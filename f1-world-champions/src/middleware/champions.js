@@ -11,6 +11,8 @@ import { setSessionStorage, getSessionStorage } from '../util';
 
 import { updateChampions } from '../actions/champions';
 
+//This private function will flatten the champions object
+//data => champions objet
 const flattenChampionsObject = (data) => {
     return data.map(item => {
         let driverStandings = item.DriverStandings[0];
@@ -24,6 +26,7 @@ const flattenChampionsObject = (data) => {
     });
 }
 
+//This middleware will proccess the champions's success action triggered from the api
 export const fetchChampionsSuccess = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_CHAMPIONS_SUCCESS) {
@@ -37,6 +40,7 @@ export const fetchChampionsSuccess = ({ dispatch }) => next => action => {
     }
 };
 
+//This middleware will proccess the champions's fetch action triggered on page load
 export const fetchChampionsFlow = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_CHAMPIONS) {

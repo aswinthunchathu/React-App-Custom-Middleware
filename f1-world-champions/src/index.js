@@ -6,7 +6,6 @@ import './Assets/fontawesome/css/all.css';
 import AppRoute from './route';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
-
 import store from './store';
 
 ReactDOM.render(

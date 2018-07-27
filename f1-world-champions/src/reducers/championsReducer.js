@@ -3,10 +3,9 @@ import {
     FETCH_CHAMPIONS, FETCH_CHAMPIONS_SUCCESS,
     UPDATE_CHAMPIONS, FETCH_CHAMPIONS_ERROR
 } from '../constants/actionTypes';
-//import { reducerCreator } from '../util';
 
-//const list = reducerCreator([], CHAMPIONS_TAG);
 
+//This reducer updates champions data to redux store
 const list = (
     state = {
         fetching: false,
