@@ -13,6 +13,7 @@ class WinnersTable extends Component {
     fetching : PropTypes.bool
   }
 
+  //column generation
   columnSchema() {
     const {highlight} = this.props;
     return [

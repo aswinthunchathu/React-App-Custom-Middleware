@@ -9,9 +9,9 @@ import {
 } from '../constants/actionTypes';
 import { KEY_SEASONS_LIST } from '../constants/sessionKeys';
 import { setSessionStorage, getSessionStorage } from '../util';
-
 import { updateSeasons, updateSeasonRange } from '../actions/seasons';
 
+//This middleware will proccess the season's success action triggered from the api
 export const fetchSeasonsSuccess = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_SEASONS_SUCCESS) {
@@ -24,6 +24,7 @@ export const fetchSeasonsSuccess = ({ dispatch }) => next => action => {
     }
 };
 
+//This middleware will proccess the season's fetch action triggered on page load
 export const fetchSeasonsFlow = ({ dispatch }) => next => action => {
     next(action);
     if (action.type === FETCH_SEASONS) {
@@ -37,9 +38,11 @@ export const fetchSeasonsFlow = ({ dispatch }) => next => action => {
     }
 };
 
+//This middleware will proccess the season range change action
 export const updateSelectedSeason = ({ dispatch, getState }) => next => action => {
     next(action);
     //Change selected "To year" to 1 year more than "From year"
+    //if "To year" is less than "From year"
     if (action.type === UPDATE_SEASON_RANGE_FROM) {
         if (getState().seasons.toYear <= action.payload) {
             let payload = `${parseInt(action.payload, 10) + 1}`;

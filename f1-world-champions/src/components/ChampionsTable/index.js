@@ -13,6 +13,7 @@ class ChampionsTable extends Component {
     fetching : PropTypes.bool
   }
 
+  //Generate Columns for the table
   columnSchema() {
     return [
       {

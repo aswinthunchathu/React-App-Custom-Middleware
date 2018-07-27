@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+//Handle invalid URLs
 const NoMatch = ({ location }) => (
   <div className="container card-component text-center">
     <h1 className="text-danger">

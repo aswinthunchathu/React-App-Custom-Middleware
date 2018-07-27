@@ -12,6 +12,7 @@ class Table extends Component {
     className: PropTypes.string
   }
 
+  //Thead generation
   generateHeaderSchema() {
     const { columns } = this.props;
     return (
@@ -29,6 +30,7 @@ class Table extends Component {
     )
   }
 
+    //Tbody generation
   generateBodySchema() {
     const { columns, data } = this.props;
     let rows = [];

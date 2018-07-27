@@ -4,6 +4,7 @@ import {
     UPDATE_SEASON_RANGE_FROM, UPDATE_SEASON_RANGE_TO
 } from '../constants/actionTypes';
 
+//This reducer updates seasons data to redux store
 const list = (
     state = {
         fetching: false,
@@ -46,6 +47,7 @@ const list = (
     }
 };
 
+//This reducer updates "from year" in the redux store
 const fromYear = (
     state = "2005", action) => {
     switch (action.type) {
@@ -56,6 +58,7 @@ const fromYear = (
     }
 }
 
+//This reducer updates "to year" in the redux store
 const toYear = (
     state = "2015", action) => {
     switch (action.type) {

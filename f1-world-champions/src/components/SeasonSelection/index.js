@@ -16,6 +16,10 @@ class SeasonSelection extends Component {
     onSeasonChange: PropTypes.func.isRequired
   }
 
+  //Generete the list of seasons
+  //list => years : object
+  //filter => year : string
+  //reverse => 1/-1 : to toggle between >/<
   generateSeasonList(list, filter, reverse = 1) {
     let data = list.filter(item => {
       return parseInt(item.season, 10) * reverse > parseInt(filter, 10) * reverse;
